@@ -1,0 +1,26 @@
+[package]
+name = "essentia_llm_plugin"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+description = "Essentia LLM Integration Plugin - Pure std-only Grok/Copilot API access"
+keywords = ["llm", "grok", "ai", "essentia", "copilot"]
+categories = ["api-bindings", "development-tools"]
+
+[lints]
+workspace = true
+
+[lib]
+name = "essentia_llm_plugin"
+path = "src/lib.rs"
+
+[[bin]]
+name = "essentia_grok_cli"
+path = "src/main.rs"
+
+[dependencies]
+# Zero third-party dependencies - pure Rust standard library only
+# SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)
