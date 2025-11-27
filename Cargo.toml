@@ -22,5 +22,7 @@ name = "essentia_grok_cli"
 path = "src/main.rs"
 
 [dependencies]
-# Zero third-party dependencies - pure Rust standard library only
+# Core trait definitions for FlexForge integration
+essentia_traits = { workspace = true }
+# Zero other third-party dependencies - pure Rust standard library only
 # SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)

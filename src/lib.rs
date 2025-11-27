@@ -12,6 +12,17 @@
 //! - UUID v4 generation
 //! - HTML parsing
 //! - Cookie management
+//!
+//! ## `FlexForge` Integration
+//!
+//! The LLM plugin integrates with `FlexForge` via `LlmPluginFlexForge`:
+//!
+//! ```ignore
+//! use essentia_llm_plugin::flexforge::LlmPluginFlexForge;
+//!
+//! let plugin = LlmPluginFlexForge::new();
+//! let panel_info = plugin.panel_info();
+//! ```
 
 // TODO: Add comprehensive documentation to all public items
 // Tracked in documentation remediation queue
@@ -22,3 +33,7 @@
 
 pub mod core;
 pub mod essentia;
+pub mod flexforge;
+
+// Re-exports for convenience
+pub use flexforge::{LlmPluginConfig, LlmPluginFlexForge, LlmProvider};
