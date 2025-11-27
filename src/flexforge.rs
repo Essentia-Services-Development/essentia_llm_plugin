@@ -161,10 +161,10 @@ impl FlexForgeIntegration for LlmPluginFlexForge {
     }
 
     fn on_panel_deactivate(&mut self) {
-        if self.stream_active && self.stream_id.is_some() {
-            if let Some(id) = self.stream_id.take() {
-                let _ = self.stop_stream(id);
-            }
+        if self.stream_active
+            && let Some(id) = self.stream_id.take()
+        {
+            let _ = self.stop_stream(id);
         }
     }
 
