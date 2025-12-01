@@ -36,7 +36,7 @@ impl Document {
     pub fn find_meta_content(&self, name: &str) -> Option<String> {
         self.find_elements_by_tag("meta")
             .into_iter()
-            .find(|elem| elem.attributes.get("name").map(|n| n == name).unwrap_or(false))
+            .find(|elem| elem.attributes.get("name").is_some_and(|n| n == name))
             .and_then(|elem| elem.attributes.get("content").cloned())
     }
 

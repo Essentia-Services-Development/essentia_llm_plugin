@@ -22,16 +22,16 @@ impl Url {
                     auth_part[colon + 1..].to_string(),
                 ))
             } else {
-                Some((auth_part.to_string(), "".to_string()))
+                Some((auth_part.to_string(), String::new()))
             }
         } else {
             None
         };
         let (host_port, path_part) = rest.split_once('/').unwrap_or((rest, ""));
         let path = if path_part.is_empty() {
-            "/".to_string()
+            String::from("/")
         } else {
-            format!("/{}", path_part)
+            ["/", path_part].concat()
         };
         let (hostname, port) = if let Some(colon) = host_port.find(':') {
             (

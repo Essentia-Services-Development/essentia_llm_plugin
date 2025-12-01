@@ -82,8 +82,11 @@ impl TlsStream {
         // Server Name Indication (SNI)
         extensions.extend_from_slice(&[0x00, 0x00]); // Extension type
         let sni_data = self.build_sni_extension(host);
-        extensions.extend_from_slice(&((sni_data.len() + 2) as u16).to_be_bytes());
-        extensions.extend_from_slice(&(sni_data.len() as u16).to_be_bytes());
+        extensions.extend_from_slice(
+            &(u16::try_from(sni_data.len() + 2).unwrap_or(u16::MAX)).to_be_bytes(),
+        );
+        extensions
+            .extend_from_slice(&(u16::try_from(sni_data.len()).unwrap_or(u16::MAX)).to_be_bytes());
         extensions.extend_from_slice(&sni_data);
 
         // Add extensions length
@@ -93,11 +96,12 @@ impl TlsStream {
 
         // Fix lengths
         let handshake_len = hello.len() - 5;
-        hello[3..5].copy_from_slice(&(handshake_len as u16).to_be_bytes());
+        hello[3..5]
+            .copy_from_slice(&(u16::try_from(handshake_len).unwrap_or(u16::MAX)).to_be_bytes());
         hello[7..10].copy_from_slice(&(handshake_len as u32 - 4).to_be_bytes());
 
         let record_len = hello.len() - 5;
-        hello[3..5].copy_from_slice(&(record_len as u16).to_be_bytes());
+        hello[3..5].copy_from_slice(&(u16::try_from(record_len).unwrap_or(u16::MAX)).to_be_bytes());
 
         hello
     }
@@ -106,7 +110,7 @@ impl TlsStream {
         let mut sni = Vec::new();
         sni.push(0x00); // DNS hostname
         let host_bytes = host.as_bytes();
-        sni.extend_from_slice(&(host_bytes.len() as u16).to_be_bytes());
+        sni.extend_from_slice(&(u16::try_from(host_bytes.len()).unwrap_or(u16::MAX)).to_be_bytes());
         sni.extend_from_slice(host_bytes);
         sni
     }

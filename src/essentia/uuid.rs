@@ -16,7 +16,7 @@ impl Uuid {
 
         for byte in bytes.iter_mut() {
             rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
-            *byte = (rng >> 32) as u8;
+            *byte = ((rng >> 32) & 0xFF) as u8;
         }
 
         // Set version to 4 (random UUID)

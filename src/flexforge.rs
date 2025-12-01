@@ -238,7 +238,7 @@ impl UiConfigurable for LlmPluginFlexForge {
             },
             "max_tokens" => {
                 let v: f64 = value.parse().map_err(|_| "Invalid number")?;
-                self.config.max_tokens = v as u32;
+                self.config.max_tokens = u32::try_from(v as i64).unwrap_or(u32::MAX);
                 Ok(())
             },
             "temperature" => {
@@ -255,7 +255,7 @@ impl UiConfigurable for LlmPluginFlexForge {
             },
             "timeout_secs" => {
                 let v: f64 = value.parse().map_err(|_| "Invalid number")?;
-                self.config.timeout_secs = v as u32;
+                self.config.timeout_secs = u32::try_from(v as i64).unwrap_or(u32::MAX);
                 Ok(())
             },
             "custom_endpoint" => {
@@ -401,6 +401,7 @@ mod tests {
     }
 
     #[test]
+    #[allow(clippy::expect_used)]
     fn test_streaming_lifecycle() {
         let mut plugin = LlmPluginFlexForge::new();
 
