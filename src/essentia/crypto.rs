@@ -1,3 +1,9 @@
+//! SHA-256 implementation using only std library
+//!
+//! Note: Single-character variable names (a-h, k, w) follow SHA-256 spec
+//! convention.
+#![allow(clippy::many_single_char_names, clippy::unreadable_literal)]
+
 pub fn sha256(data: &[u8]) -> [u8; 32] {
     // Pure Rust implementation of SHA256 using std only
     // This is a simplified version for demonstration - not cryptographically secure

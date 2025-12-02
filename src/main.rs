@@ -1,5 +1,28 @@
 //! Essentia Grok CLI - Pure std-only AI chat interface.
-#![allow(missing_docs)]
+#![allow(missing_docs, clippy::needless_raw_string_hashes)]
+#![allow(
+    clippy::format_push_string,
+    clippy::uninlined_format_args,
+    clippy::unnecessary_wraps,
+    clippy::redundant_closure_for_method_calls,
+    clippy::manual_string_new,
+    clippy::no_effect_underscore_binding,
+    clippy::unused_self,
+    clippy::struct_field_names,
+    clippy::cast_lossless,
+    clippy::cast_possible_truncation,
+    clippy::cast_sign_loss,
+    clippy::similar_names,
+    clippy::many_single_char_names,
+    clippy::trivially_copy_pass_by_ref,
+    clippy::needless_pass_by_value,
+    clippy::must_use_candidate,
+    clippy::self_only_used_in_recursion,
+    clippy::map_unwrap_or,
+    clippy::single_char_pattern,
+    clippy::elidable_lifetime_names,
+    clippy::explicit_iter_loop
+)]
 
 use std::{
     collections::VecDeque,

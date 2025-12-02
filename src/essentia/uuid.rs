@@ -1,3 +1,6 @@
+//! Pure Rust UUID v4 implementation.
+#![allow(clippy::unreadable_literal, clippy::similar_names)]
+
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

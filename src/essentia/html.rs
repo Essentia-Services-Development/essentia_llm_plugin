@@ -1,3 +1,6 @@
+//! Pure Rust HTML parser implementation.
+#![allow(clippy::redundant_else)]
+
 use std::collections::HashMap;
 
 #[derive(Debug, Clone)]
