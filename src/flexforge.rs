@@ -51,7 +51,7 @@ pub enum LlmProvider {
     Copilot,
     /// Local Essentia SLM
     LocalSlm,
-    /// Custom OpenAI-compatible endpoint
+    /// Custom Essentia-compatible endpoint
     Custom,
 }
 
@@ -217,7 +217,7 @@ impl UiConfigurable for LlmPluginFlexForge {
             )
             .with_field(
                 ConfigField::text("custom_endpoint", "Custom Endpoint")
-                    .with_description("OpenAI-compatible API endpoint (for custom provider)")
+                    .with_description("Essentia-compatible API endpoint (for custom provider)")
                     .with_group("Network"),
             )
     }
