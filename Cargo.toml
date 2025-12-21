@@ -24,6 +24,8 @@
 [dependencies]
     # Core trait definitions for FlexForge integration
     essentia_traits = {workspace = true}
+    # CR-163: Canonical time utilities
+    essentia_error = {workspace = true}
     # CR-164: Canonical crypto primitives (zero external deps, SSOP-compliant)
     essentia_core_utils = {workspace = true}
     # Zero third-party dependencies - pure Rust standard library only
