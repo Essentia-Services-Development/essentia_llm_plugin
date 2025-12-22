@@ -11,7 +11,7 @@ impl Uuid {
         let mut bytes = [0u8; 16];
 
         // CR-163: Use canonical time module for randomness seed
-        let now = essentia_error::time::unix_nanos();
+        let now = essentia_core::time::unix_nanos();
 
         let mut rng = now as u64;
 
