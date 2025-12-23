@@ -8,15 +8,15 @@ pub fn encode(input: &[u8]) -> String {
         let b2 = if i + 1 < input.len() { input[i + 1] } else { 0 };
         let b3 = if i + 2 < input.len() { input[i + 2] } else { 0 };
         let n = ((b1 as u32) << 16) | ((b2 as u32) << 8) | (b3 as u32);
-        result.push(BASE64_CHARS[usize::try_from((n >> 18) & 63).unwrap()]);
-        result.push(BASE64_CHARS[usize::try_from((n >> 12) & 63).unwrap()]);
+        result.push(BASE64_CHARS[usize::try_from((n >> 18) & 63).ok_or_else(|| EssentiaError::invalid_state("unwrap replaced"))?]);
+        result.push(BASE64_CHARS[usize::try_from((n >> 12) & 63).ok_or_else(|| EssentiaError::invalid_state("unwrap replaced"))?]);
         if i + 1 < input.len() {
-            result.push(BASE64_CHARS[usize::try_from((n >> 6) & 63).unwrap()]);
+            result.push(BASE64_CHARS[usize::try_from((n >> 6) & 63).ok_or_else(|| EssentiaError::invalid_state("unwrap replaced"))?]);
         } else {
             result.push(b'=');
         }
         if i + 2 < input.len() {
-            result.push(BASE64_CHARS[usize::try_from(n & 63).unwrap()]);
+            result.push(BASE64_CHARS[usize::try_from(n & 63).ok_or_else(|| EssentiaError::invalid_state("unwrap replaced"))?]);
         } else {
             result.push(b'=');
         }
@@ -68,3 +68,5 @@ pub fn decode(input: &str) -> Result<Vec<u8>, &'static str> {
     }
     Ok(result)
 }
+
+
