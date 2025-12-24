@@ -405,12 +405,10 @@ mod tests {
     fn test_streaming_lifecycle() {
         let mut plugin = LlmPluginFlexForge::new();
 
-        let stream_id = plugin.start_stream().ok_or_else(|| EssentiaError::invalid_state("Should start");
+        let stream_id = plugin.start_stream().ok_or_else(|| EssentiaError::invalid_state("Should start"))?;
         assert!(plugin.is_streaming());
 
-        plugin.stop_stream(stream_id).ok_or_else(|| EssentiaError::invalid_state("Should stop");
+        plugin.stop_stream(stream_id).ok_or_else(|| EssentiaError::invalid_state("Should stop"))?;
         assert!(!plugin.is_streaming());
     }
 }
-
-

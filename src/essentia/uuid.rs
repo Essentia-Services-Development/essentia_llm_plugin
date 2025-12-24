@@ -1,6 +1,8 @@
 //! Pure Rust UUID v4 implementation.
 #![allow(clippy::unreadable_literal, clippy::similar_names)]
 
+use essentia_core_utils::time;
+
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Uuid {
     bytes: [u8; 16],
@@ -11,7 +13,7 @@ impl Uuid {
         let mut bytes = [0u8; 16];
 
         // CR-163: Use canonical time module for randomness seed
-        let now = essentia_core::time::unix_nanos();
+        let now = time::unix_nanos();
 
         let mut rng = now as u64;
 
