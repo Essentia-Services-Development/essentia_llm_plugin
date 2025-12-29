@@ -6,7 +6,7 @@
 //!
 //! - Provider selection (Grok, Copilot, Local)
 //! - API key configuration (secure)
-//! - Streaming token output via ERSP
+//! - Streaming token output via RSP+++
 //! - Model parameter tuning
 
 use essentia_traits::plugin_contracts::{
@@ -358,7 +358,7 @@ impl StreamingCapable for LlmPluginFlexForge {
             return false;
         }
 
-        // In production, this would emit token frames via ERSP
+        // In production, this would emit token frames via RSP+++
         // as they arrive from the LLM provider
         true
     }
@@ -405,10 +405,10 @@ mod tests {
     fn test_streaming_lifecycle() {
         let mut plugin = LlmPluginFlexForge::new();
 
-        let stream_id = plugin.start_stream().ok_or_else(|| EssentiaError::invalid_state("Should start"))?;
+        let stream_id = plugin.start_stream().expect("Should start");
         assert!(plugin.is_streaming());
 
-        plugin.stop_stream(stream_id).ok_or_else(|| EssentiaError::invalid_state("Should stop"))?;
+        plugin.stop_stream(stream_id).expect("Should stop");
         assert!(!plugin.is_streaming());
     }
 }

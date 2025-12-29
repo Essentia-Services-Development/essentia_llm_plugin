@@ -184,10 +184,10 @@ Current version uses dummy responses for demonstration.
         let _iter_results: Vec<_> = regex.find_iter(message).collect();
 
         // Use base64 encoding for API key
-        let encoded_key = crate::essentia::base64::encode(self.api_key.as_bytes()).unwrap();
+        let encoded_key = crate::essentia::base64::encode(self.api_key.as_bytes());
 
         // Use base64 decode as well
-        let _decoded_key = crate::essentia::base64::decode(&encoded_key).unwrap();
+        let _decoded_key = crate::essentia::base64::decode(&encoded_key);
 
         // Use HTTP functions (dummy calls)
         let _get_result = crate::essentia::http::get("http://example.com");
@@ -220,7 +220,7 @@ Current version uses dummy responses for demonstration.
                         "signature".to_string(),
                         crate::essentia::json::Value::String(crate::essentia::base64::encode(
                             &signature,
-                        ).unwrap()),
+                        )),
                     );
                     msg_obj
                 })]),
@@ -231,7 +231,7 @@ Current version uses dummy responses for demonstration.
             );
             obj.insert(
                 "hash".to_string(),
-                crate::essentia::json::Value::String(crate::essentia::base64::encode(&hash).unwrap()),
+                crate::essentia::json::Value::String(crate::essentia::base64::encode(&hash)),
             );
             obj
         });

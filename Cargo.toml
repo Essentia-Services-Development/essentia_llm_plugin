@@ -1,32 +1,28 @@
 [package]
-    authors.workspace    = true
-    categories           = ["api-bindings", "development-tools"]
-    description          = "Essentia LLM Integration Plugin - Pure std-only Grok/Copilot API access"
-    edition.workspace    = true
-    keywords             = ["llm", "grok", "ai", "essentia", "copilot"]
-    license.workspace    = true
-    name                 = "essentia_llm_plugin"
-    publish.workspace    = true
-    repository.workspace = true
-    version.workspace    = true
+name = "essentia_llm_plugin"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+description = "Essentia LLM Integration Plugin - Pure std-only Grok/Copilot API access"
+keywords = ["llm", "grok", "ai", "essentia", "copilot"]
+categories = ["api-bindings", "development-tools"]
 
 [lints]
-    workspace = true
+workspace = true
 
 [lib]
-    name = "essentia_llm_plugin"
-    path = "src/lib.rs"
+name = "essentia_llm_plugin"
+path = "src/lib.rs"
 
 [[bin]]
-    name = "essentia_grok_cli"
-    path = "src/main.rs"
+name = "essentia_grok_cli"
+path = "src/main.rs"
 
 [dependencies]
-    # Core trait definitions for FlexForge integration
-    essentia_traits = {workspace = true}
-    # CR-163: Canonical time utilities
-    essentia_error = {workspace = true}
-    # CR-164: Canonical crypto primitives (zero external deps, SSOP-compliant)
-    essentia_core_utils = {workspace = true}
-    # Zero third-party dependencies - pure Rust standard library only
-    # SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)
+# Core trait definitions for FlexForge integration
+essentia_traits = { workspace = true }
+# Zero other third-party dependencies - pure Rust standard library only
+# SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)

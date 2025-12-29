@@ -1,8 +1,6 @@
-use essentia_error::EssentiaError;
-
 const BASE64_CHARS: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-pub fn encode(input: &[u8]) -> Result<String, EssentiaError> {
+pub fn encode(input: &[u8]) -> String {
     let mut result = Vec::new();
     let mut i = 0;
     while i < input.len() {
@@ -10,21 +8,21 @@ pub fn encode(input: &[u8]) -> Result<String, EssentiaError> {
         let b2 = if i + 1 < input.len() { input[i + 1] } else { 0 };
         let b3 = if i + 2 < input.len() { input[i + 2] } else { 0 };
         let n = ((b1 as u32) << 16) | ((b2 as u32) << 8) | (b3 as u32);
-        result.push(BASE64_CHARS[usize::try_from((n >> 18) & 63).map_err(|_| EssentiaError::InvalidState("Invalid base64 character index".into()))?]);
-        result.push(BASE64_CHARS[usize::try_from((n >> 12) & 63).map_err(|_| EssentiaError::InvalidState("Invalid base64 character index".into()))?]);
+        result.push(BASE64_CHARS[usize::try_from((n >> 18) & 63).unwrap()]);
+        result.push(BASE64_CHARS[usize::try_from((n >> 12) & 63).unwrap()]);
         if i + 1 < input.len() {
-            result.push(BASE64_CHARS[usize::try_from((n >> 6) & 63).map_err(|_| EssentiaError::InvalidState("Invalid base64 character index".into()))?]);
+            result.push(BASE64_CHARS[usize::try_from((n >> 6) & 63).unwrap()]);
         } else {
             result.push(b'=');
         }
         if i + 2 < input.len() {
-            result.push(BASE64_CHARS[usize::try_from(n & 63).map_err(|_| EssentiaError::InvalidState("Invalid base64 character index".into()))?]);
+            result.push(BASE64_CHARS[usize::try_from(n & 63).unwrap()]);
         } else {
             result.push(b'=');
         }
         i += 3;
     }
-    Ok(String::from_utf8(result).map_err(|_| EssentiaError::InvalidState("Invalid UTF-8 in base64 result".into()))?)
+    String::from_utf8(result).unwrap_or_default()
 }
 
 pub fn decode(input: &str) -> Result<Vec<u8>, &'static str> {
