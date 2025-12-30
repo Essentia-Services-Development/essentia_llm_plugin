@@ -194,8 +194,9 @@ Current version uses dummy responses for demonstration.
 
         // Use crypto functions for request signing
         let message_bytes = message.as_bytes();
-        let hash = crate::essentia::crypto::sha256(message_bytes);
-        let signature = crate::essentia::crypto::sign(&hash, encoded_key.as_bytes());
+        let hash = essentia_core_utils::crypto::sha256(message_bytes);
+        // TODO: Implement proper signing with API key
+        let signature = hash; // Placeholder - use hash directly for now
 
         // Build JSON payload using our JSON implementation
         let payload = crate::essentia::json::Value::Object({

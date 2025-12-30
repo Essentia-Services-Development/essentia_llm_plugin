@@ -1,6 +1,5 @@
 pub mod base64;
 pub mod cookies;
-pub mod crypto;
 pub mod html;
 pub mod http;
 pub mod json;

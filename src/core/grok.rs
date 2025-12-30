@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use crate::core::anon::Anon;
+use essentia_core_utils::crypto::sha256;
 
 #[derive(Clone)]
 pub struct Models;
@@ -58,7 +59,7 @@ impl Grok {
         crate::core::logger::Log::success("Test success message");
 
         // Use crypto for API key validation
-        let _key_hash = crate::essentia::crypto::sha256(api_key.as_bytes());
+        let _key_hash = sha256(api_key.as_bytes());
 
         // Use anon for key generation
         let keys = crate::core::anon::Anon::generate_keys();

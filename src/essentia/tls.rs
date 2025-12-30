@@ -5,6 +5,8 @@ use std::{
     net::TcpStream,
 };
 
+use essentia_core_utils::crypto::sha256;
+
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Certificate {
@@ -62,7 +64,7 @@ impl TlsStream {
         hello.extend_from_slice(&[0x03, 0x03]); // TLS 1.2
 
         // Random (32 bytes)
-        let random: [u8; 32] = crate::essentia::crypto::sha256(host.as_bytes());
+        let random: [u8; 32] = sha256(host.as_bytes());
         hello.extend_from_slice(&random);
 
         // Session ID length
