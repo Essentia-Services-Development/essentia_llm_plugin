@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 
-use crate::core::anon::Anon;
 use essentia_core_utils::crypto::sha256;
+
+use crate::core::anon::Anon;
 
 #[derive(Clone)]
 pub struct Models;

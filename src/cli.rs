@@ -1,3 +1,4 @@
+// SSOP-EXEMPT(std::io): Required for synchronous CLI console I/O operations
 use std::io::{self, Write};
 
 fn main() {

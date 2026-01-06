@@ -24,6 +24,7 @@
     clippy::explicit_iter_loop
 )]
 
+// SSOP-EXEMPT(std::io): Required for synchronous CLI console I/O operations
 use std::{
     collections::VecDeque,
     io::{self, Write},
