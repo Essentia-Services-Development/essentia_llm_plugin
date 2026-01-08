@@ -12,15 +12,11 @@ categories = ["api-bindings", "development-tools"]
 
 [lints]
 workspace = true
-
 [lib]
-name = "essentia_llm_plugin"
 path = "src/lib.rs"
-
 [[bin]]
-name = "essentia_grok_cli"
-path = "src/main.rs"
-
+    name = "essentia_llm_plugin"
+    path = "src/main.rs"
 [dependencies]
 # Core trait definitions for FlexForge integration
 essentia_traits = { workspace = true }
