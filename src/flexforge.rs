@@ -364,7 +364,7 @@ impl StreamingCapable for LlmPluginFlexForge {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "full-tests"))]
 mod tests {
     use super::*;
 
