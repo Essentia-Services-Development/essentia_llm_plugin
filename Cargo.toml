@@ -18,6 +18,9 @@ path = "src/lib.rs"
 [[bin]]
     name = "essentia_llm_plugin"
     path = "src/main.rs"
+[features]
+full-tests = []
+
 [dependencies]
 # Core trait definitions for FlexForge integration
 essentia_traits = { workspace = true }
