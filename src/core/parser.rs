@@ -18,7 +18,7 @@ impl Parser {
         )
     }
 
-    pub fn parse_grok(_scripts: Vec<String>) -> (Vec<String>, String) {
+    pub fn parse_external_llm(_scripts: Vec<String>) -> (Vec<String>, String) {
         // Dummy implementation - real implementation would parse actions and xsid
         // script from scripts
         (

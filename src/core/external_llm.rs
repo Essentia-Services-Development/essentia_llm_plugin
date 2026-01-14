@@ -10,12 +10,12 @@ pub struct Models;
 impl Models {
     pub fn get_model_mode(model: &str, index: usize) -> String {
         let models: HashMap<&str, Vec<&str>> = [
-            ("grok-3-auto", vec!["MODEL_MODE_AUTO", "auto"]),
-            ("grok-3-fast", vec!["MODEL_MODE_FAST", "fast"]),
-            ("grok-4", vec!["MODEL_MODE_EXPERT", "expert"]),
-            ("grok-4-mini-thinking-tahoe", vec![
-                "MODEL_MODE_GROK_4_MINI_THINKING",
-                "grok-4-mini-thinking",
+            ("essentia-llm-auto", vec!["MODEL_MODE_AUTO", "auto"]),
+            ("essentia-llm-fast", vec!["MODEL_MODE_FAST", "fast"]),
+            ("essentia-llm-expert", vec!["MODEL_MODE_EXPERT", "expert"]),
+            ("essentia-llm-thinking", vec![
+                "MODEL_MODE_THINKING",
+                "essentia-thinking",
             ]),
         ]
         .iter()
@@ -25,7 +25,7 @@ impl Models {
     }
 }
 
-pub struct Grok {
+pub struct ExternalLlm {
     model_mode: String,
     model:      String,
     mode:       String,
@@ -34,7 +34,7 @@ pub struct Grok {
     proxy:      String,
 }
 
-impl Grok {
+impl ExternalLlm {
     pub fn new(model: &str, proxy: &str) -> Self {
         Self {
             model_mode: Models::get_model_mode(model, 0),
@@ -75,7 +75,7 @@ impl Grok {
             crate::core::parser::Parser::parse_values(message, "loading", "script");
         let _anim_data = crate::core::parser::Parser::get_anim(message, "verification");
         let scripts = vec![message.to_string()];
-        let _grok_data = crate::core::parser::Parser::parse_grok(scripts);
+        let _llm_data = crate::core::parser::Parser::parse_external_llm(scripts);
 
         // Use xctid for signature generation
         let _signature =
@@ -100,7 +100,7 @@ impl Grok {
 
         // Dummy response structure matching official API
         let dummy_response = match message.to_lowercase().as_str() {
-            "hello" | "hi" => "Hello! I'm Grok, built by xAI. How can I help you today?",
+            "hello" | "hi" => "Hello! I'm an Essentia AI assistant. How can I help you today?",
             "what is rust?" => {
                 "Rust is a systems programming language focused on safety, speed, and concurrency. \
                  It prevents common programming errors like null pointer dereferences and data \
@@ -115,17 +115,17 @@ impl Grok {
                 if crate::essentia::regex::search(r"rust", message).is_some() {
                     "I see you're asking about Rust! It's a great language for systems programming."
                 } else if crate::essentia::regex::search(r"ai|artificial", message).is_some() {
-                    "As an AI built by xAI, I'm here to help with any questions you have!"
+                    "As an Essentia AI assistant, I'm here to help with any questions you have!"
                 } else {
-                    "I'm a pure Rust implementation of Grok with zero external dependencies. This \
+                    "I'm a pure Rust implementation with zero external dependencies. This \
                      is a dummy response. Full API access requires HTTPS/TLS implementation in \
-                     std, which is not yet available. The framework is ready for official xAI API \
+                     std, which is not yet available. The framework is ready for official API \
                      integration."
                 }
             },
         };
 
-        crate::core::logger::Log::info(&format!("Grok API response: {}", dummy_response));
+        crate::core::logger::Log::info(&format!("External LLM API response: {}", dummy_response));
 
         // Create response using the method
         let _response_obj = self.create_response(dummy_response.to_string());

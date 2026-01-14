@@ -4,7 +4,7 @@
 //!
 //! ## Features
 //!
-//! - Provider selection (Grok, Copilot, Local)
+//! - Provider selection (External AI, Copilot, Local)
 //! - API key configuration (secure)
 //! - Streaming token output via ERSP
 //! - Model parameter tuning
@@ -45,8 +45,8 @@ pub struct LlmPluginConfig {
 /// Supported LLM providers.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum LlmProvider {
-    /// xAI Grok
-    Grok,
+    /// External AI API
+    ExternalAI,
     /// GitHub Copilot
     Copilot,
     /// Local Essentia SLM
@@ -58,7 +58,7 @@ pub enum LlmProvider {
 impl LlmProvider {
     fn as_str(&self) -> &'static str {
         match self {
-            Self::Grok => "grok",
+            Self::ExternalAI => "external_ai",
             Self::Copilot => "copilot",
             Self::LocalSlm => "local_slm",
             Self::Custom => "custom",
@@ -67,7 +67,7 @@ impl LlmProvider {
 
     fn from_str(s: &str) -> Option<Self> {
         match s {
-            "grok" => Some(Self::Grok),
+            "external_ai" => Some(Self::ExternalAI),
             "copilot" => Some(Self::Copilot),
             "local_slm" => Some(Self::LocalSlm),
             "custom" => Some(Self::Custom),
@@ -183,7 +183,7 @@ impl UiConfigurable for LlmPluginFlexForge {
             .with_field(
                 ConfigField::select("provider", "LLM Provider", vec![
                     String::from("local_slm"),
-                    String::from("grok"),
+                    String::from("external_ai"),
                     String::from("copilot"),
                     String::from("custom"),
                 ])
@@ -192,7 +192,7 @@ impl UiConfigurable for LlmPluginFlexForge {
             )
             .with_field(
                 ConfigField::text("model", "Model Name")
-                    .with_description("Model identifier (e.g., grok-2, essentia-slm-100m)")
+                    .with_description("Model identifier (e.g., essentia-llm-auto, essentia-slm-100m)")
                     .with_group("Provider"),
             )
             .with_field(
@@ -377,7 +377,7 @@ mod tests {
 
     #[test]
     fn test_provider_parsing() {
-        assert_eq!(LlmProvider::from_str("grok"), Some(LlmProvider::Grok));
+        assert_eq!(LlmProvider::from_str("external_ai"), Some(LlmProvider::ExternalAI));
         assert_eq!(
             LlmProvider::from_str("local_slm"),
             Some(LlmProvider::LocalSlm)
@@ -390,8 +390,8 @@ mod tests {
         let mut plugin = LlmPluginFlexForge::new();
 
         // Valid provider change
-        assert!(plugin.on_config_changed("provider", "grok").is_ok());
-        assert_eq!(plugin.config.provider, LlmProvider::Grok);
+        assert!(plugin.on_config_changed("provider", "external_ai").is_ok());
+        assert_eq!(plugin.config.provider, LlmProvider::ExternalAI);
 
         // Invalid provider
         assert!(plugin.on_config_changed("provider", "invalid").is_err());

@@ -1,4 +1,4 @@
-//! Essentia Grok CLI - Pure std-only AI chat interface.
+//! Essentia LLM CLI - Pure std-only AI chat interface.
 #![allow(missing_docs, clippy::needless_raw_string_hashes)]
 #![allow(
     clippy::format_push_string,
@@ -33,7 +33,7 @@ use std::{
 mod core;
 mod essentia;
 
-use core::grok::Grok;
+use core::external_llm::ExternalLlm;
 
 const MAX_HISTORY: usize = 100;
 
@@ -44,13 +44,13 @@ struct ChatUI {
 
 impl ChatUI {
     fn new() -> Option<Self> {
-        println!("🧠 Essentia Grok - Pure Rust AI Assistant");
+        println!("🧠 Essentia LLM - Pure Rust AI Assistant");
         println!("==========================================");
-        println!("Legal access to Grok models via official API");
+        println!("Legal access to AI models via official API");
         println!("Zero external dependencies - pure Rust standard library");
         println!("==========================================");
 
-        print!("Enter your Grok API key: ");
+        print!("Enter your API key: ");
         io::stdout().flush().ok()?;
         let mut api_key = String::new();
         io::stdin().read_line(&mut api_key).ok()?;
@@ -107,7 +107,7 @@ impl ChatUI {
         // Clear screen (ANSI escape)
         print!("\x1B[2J\x1B[1;1H");
 
-        println!("🧠 Essentia Grok Chat");
+        println!("🧠 Essentia LLM Chat");
         println!("====================");
 
         // Show last 10 messages
@@ -131,7 +131,7 @@ impl ChatUI {
 
     fn show_help(&mut self) {
         let help = r#"
-Essentia Grok Commands:
+Essentia LLM Commands:
 - help: Show this help
 - clear: Clear chat history
 - history: Show full history
@@ -204,7 +204,7 @@ Current version uses dummy responses for demonstration.
             let mut obj = std::collections::HashMap::new();
             obj.insert(
                 "model".to_string(),
-                crate::essentia::json::Value::String("grok-2-1212".to_string()),
+                crate::essentia::json::Value::String("essentia-llm-auto".to_string()),
             );
             obj.insert(
                 "messages".to_string(),
@@ -298,20 +298,20 @@ Current version uses dummy responses for demonstration.
             ("field2", "application/json", json_payload.as_bytes()),
         ]);
 
-        // In real implementation, this would call the official Grok API
+        // In real implementation, this would call the official external AI API
         // For now, dummy response that uses our implementations
-        let grok = Grok::new("grok-2-1212", &parsed_url.hostname.unwrap_or_default());
+        let llm = ExternalLlm::new("essentia-llm-auto", &parsed_url.hostname.unwrap_or_default());
 
-        match grok.chat_with_api(&encoded_key, &json_payload, &self.get_context()) {
+        match llm.chat_with_api(&encoded_key, &json_payload, &self.get_context()) {
             Ok(response) => {
                 // Use the Response struct
-                let response_obj = grok.create_response(response.clone());
+                let response_obj = llm.create_response(response.clone());
                 let _resp = &response_obj.response;
                 let _stream = &response_obj.stream_response;
                 let _images = &response_obj.images;
                 let _extra = &response_obj.extra_data;
 
-                self.add_to_history(format!("Grok: {}", response));
+                self.add_to_history(format!("AI: {}", response));
             },
             Err(e) => {
                 self.add_to_history(format!("Error: {}", e));

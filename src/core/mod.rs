@@ -1,6 +1,6 @@
 pub mod anon;
 pub mod copilot;
-pub mod grok;
+pub mod external_llm;
 pub mod logger;
 pub mod parser;
 pub mod runtime;

@@ -2,8 +2,8 @@
 use std::io::{self, Write};
 
 fn main() {
-    println!("Welcome to Essentia Grok CLI");
-    println!("This is a pure Rust implementation for accessing Grok 4.1");
+    println!("Welcome to Essentia LLM CLI");
+    println!("This is a pure Rust implementation for accessing AI models");
     println!("Note: Full authentication requires HTTPS/TLS support (not implemented in pure std)");
     println!("For demonstration, using dummy authentication");
 
@@ -28,7 +28,7 @@ fn main() {
         }
 
         // Dummy response
-        println!("Grok: This is a dummy response. Full implementation requires:");
+        println!("AI: This is a dummy response. Full implementation requires:");
         println!("- HTTPS client for authentication");
         println!("- Proper crypto for session management");
         println!("- HTML parsing for login flow");
