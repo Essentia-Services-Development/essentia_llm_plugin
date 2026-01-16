@@ -1,6 +1,6 @@
 //! # Essentia LLM Plugin
 //!
-//! Pure std-only implementation for LLM API integration (External AI, Copilot).
+//! Pure std-only implementation for LLM API integration (External AI, Code Assist).
 //! Zero third-party dependencies - SSOP compliant.
 //!
 //! ## Features

@@ -7,8 +7,8 @@ license.workspace = true
 repository.workspace = true
 readme.workspace = true
 publish.workspace = true
-description = "Essentia LLM Integration Plugin - Pure std-only Grok/Copilot API access"
-keywords = ["llm", "grok", "ai", "essentia", "copilot"]
+description = "Essentia LLM Integration Plugin - Pure std-only External LLM API access"
+keywords = ["llm", "ai", "essentia", "external-api"]
 categories = ["api-bindings", "development-tools"]
 
 [lints]
@@ -26,5 +26,6 @@ full-tests = []
 essentia_traits = { workspace = true }
 essentia_core_utils = { workspace = true }
 essentia_time = { workspace = true }
+essentia_uuid = { workspace = true }
 # Zero other third-party dependencies - pure Rust standard library only
 # SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)

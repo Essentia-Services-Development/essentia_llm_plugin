@@ -1,30 +1,35 @@
-#[allow(dead_code)]
-#[derive(Clone)]
-pub struct CopilotModels;
+//! External Code Assist API Client
+//!
+//! Provides integration with external code assistance APIs for enhanced
+//! code completion and AI-powered development workflows.
 
 #[allow(dead_code)]
-impl CopilotModels {
+#[derive(Clone)]
+pub struct ExternalCodeAssistModels;
+
+#[allow(dead_code)]
+impl ExternalCodeAssistModels {
     pub fn get_available_models() -> Vec<&'static str> {
-        vec!["gpt-4", "gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"]
+        vec!["ext-api-pro", "ext-api-standard", "ext-api-turbo", "ext-api-latest"]
     }
 }
 
 #[allow(dead_code)]
-pub struct Copilot {
+pub struct ExternalCodeAssist {
     model: String,
 }
 
 #[allow(dead_code)]
-impl Copilot {
+impl ExternalCodeAssist {
     pub fn new(model: &str) -> Self {
         Self { model: model.to_string() }
     }
 
     pub fn chat_with_api(
-        &self, github_token: &str, message: &str, context: &[String],
+        &self, api_token: &str, message: &str, context: &[String],
     ) -> Result<String, String> {
-        // GitHub Copilot API endpoint for completions
-        let url = "https://api.github.com/copilot_internal/v2/completions";
+        // External Code Assist API endpoint for completions
+        let url = "https://api.essentia.ai/code_assist/v2/completions";
 
         // Build JSON body manually
         let mut body = format!(r#"{{"model":"{}","messages":["#, self.model);
@@ -52,7 +57,7 @@ impl Copilot {
 
         // Use HTTPS client with auth
         let response =
-            crate::essentia::http::post_with_auth(url, &format!("Bearer {}", github_token), &body)
+            crate::essentia::http::post_with_auth(url, &format!("Bearer {}", api_token), &body)
                 .map_err(|e| format!("HTTP request failed: {}", e))?;
 
         // Parse the response body as JSON

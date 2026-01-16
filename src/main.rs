@@ -161,7 +161,7 @@ Current version uses dummy responses for demonstration.
 
     fn process_message(&mut self, message: &str) {
         // Use UUID for request ID
-        let request_id = crate::essentia::uuid::generate_v4();
+        let request_id = crate::essentia::uuid::Uuid::new_v4();
 
         // Use regex to validate and process message
         let message_pattern = r"^[a-zA-Z0-9\s\.,!?\-]+$";
@@ -256,7 +256,7 @@ Current version uses dummy responses for demonstration.
         let _password = &parsed_url.password;
 
         // Use uuid4 function
-        let _uuid_string = crate::essentia::uuid::uuid4();
+        let _uuid_string = crate::essentia::uuid::Uuid::new_v4();
 
         // Use HTML parsing for any web content (simulated)
         let html_content = format!("<html><body>{}</body></html>", message);
@@ -300,7 +300,10 @@ Current version uses dummy responses for demonstration.
 
         // In real implementation, this would call the official external AI API
         // For now, dummy response that uses our implementations
-        let llm = ExternalLlm::new("essentia-llm-auto", &parsed_url.hostname.unwrap_or_default());
+        let llm = ExternalLlm::new(
+            "essentia-llm-auto",
+            &parsed_url.hostname.unwrap_or_default(),
+        );
 
         match llm.chat_with_api(&encoded_key, &json_payload, &self.get_context()) {
             Ok(response) => {

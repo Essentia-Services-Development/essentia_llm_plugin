@@ -4,7 +4,7 @@
 //!
 //! ## Features
 //!
-//! - Provider selection (External AI, Copilot, Local)
+//! - Provider selection (External AI, Code Assist, Local)
 //! - API key configuration (secure)
 //! - Streaming token output via ERSP
 //! - Model parameter tuning
@@ -47,8 +47,8 @@ pub struct LlmPluginConfig {
 pub enum LlmProvider {
     /// External AI API
     ExternalAI,
-    /// GitHub Copilot
-    Copilot,
+    /// External Code Assistance
+    ExternalCodeAssist,
     /// Local Essentia SLM
     LocalSlm,
     /// Custom Essentia-compatible endpoint
@@ -59,7 +59,7 @@ impl LlmProvider {
     fn as_str(&self) -> &'static str {
         match self {
             Self::ExternalAI => "external_ai",
-            Self::Copilot => "copilot",
+            Self::ExternalCodeAssist => "external_code_assist",
             Self::LocalSlm => "local_slm",
             Self::Custom => "custom",
         }
@@ -68,7 +68,7 @@ impl LlmProvider {
     fn from_str(s: &str) -> Option<Self> {
         match s {
             "external_ai" => Some(Self::ExternalAI),
-            "copilot" => Some(Self::Copilot),
+            "external_code_assist" => Some(Self::ExternalCodeAssist),
             "local_slm" => Some(Self::LocalSlm),
             "custom" => Some(Self::Custom),
             _ => None,
@@ -184,7 +184,7 @@ impl UiConfigurable for LlmPluginFlexForge {
                 ConfigField::select("provider", "LLM Provider", vec![
                     String::from("local_slm"),
                     String::from("external_ai"),
-                    String::from("copilot"),
+                    String::from("code_assist"),
                     String::from("custom"),
                 ])
                 .with_description("Select the LLM provider to use")
@@ -192,7 +192,9 @@ impl UiConfigurable for LlmPluginFlexForge {
             )
             .with_field(
                 ConfigField::text("model", "Model Name")
-                    .with_description("Model identifier (e.g., essentia-llm-auto, essentia-slm-100m)")
+                    .with_description(
+                        "Model identifier (e.g., essentia-llm-auto, essentia-slm-100m)",
+                    )
                     .with_group("Provider"),
             )
             .with_field(
@@ -377,7 +379,10 @@ mod tests {
 
     #[test]
     fn test_provider_parsing() {
-        assert_eq!(LlmProvider::from_str("external_ai"), Some(LlmProvider::ExternalAI));
+        assert_eq!(
+            LlmProvider::from_str("external_ai"),
+            Some(LlmProvider::ExternalAI)
+        );
         assert_eq!(
             LlmProvider::from_str("local_slm"),
             Some(LlmProvider::LocalSlm)
