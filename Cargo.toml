@@ -7,8 +7,8 @@ license.workspace = true
 repository.workspace = true
 readme.workspace = true
 publish.workspace = true
-description = "Essentia LLM Integration Plugin - Pure std-only External LLM API access"
-keywords = ["llm", "ai", "essentia", "external-api"]
+description = "[DEPRECATED: Use essentia_ai_plugin with feature=llm] LLM Integration Plugin"
+keywords = ["llm", "ai", "essentia", "external-api", "deprecated"]
 categories = ["api-bindings", "development-tools"]
 
 [lints]

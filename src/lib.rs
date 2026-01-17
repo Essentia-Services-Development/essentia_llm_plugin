@@ -1,5 +1,17 @@
 //! # Essentia LLM Plugin
 //!
+//! **⚠️ DEPRECATION NOTICE (E-006 Consolidation):**
+//! This crate has been consolidated into `essentia_ai_plugin`.
+//! Use `essentia_ai_plugin` with feature = "llm" instead.
+//!
+//! ```rust,ignore
+//! // Migration:
+//! // OLD: use essentia_llm_plugin::{LlmPluginFlexForge, LlmProvider};
+//! // NEW: use essentia_ai_plugin::llm::{LlmPluginFlexForge, LlmProvider};
+//! ```
+//!
+//! ---
+//!
 //! Pure std-only implementation for LLM API integration (External AI, Code Assist).
 //! Zero third-party dependencies - SSOP compliant.
 //!
