@@ -193,3 +193,4 @@ fn parse_response(data: &[u8]) -> Result<Response, &'static str> {
     let body = text.lines().skip(body_start).collect::<Vec<_>>().join("\n").into_bytes();
     Ok(Response { status, headers, body })
 }
+

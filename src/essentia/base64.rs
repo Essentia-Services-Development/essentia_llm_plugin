@@ -68,3 +68,4 @@ pub fn decode(input: &str) -> Result<Vec<u8>, &'static str> {
     }
     Ok(result)
 }
+

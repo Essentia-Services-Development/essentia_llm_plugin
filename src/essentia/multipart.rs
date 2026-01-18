@@ -16,3 +16,4 @@ pub fn create_multipart(boundary: &str, parts: Vec<(&str, &str, &[u8])>) -> Vec<
     data.extend_from_slice(format!("--{}--\r\n", boundary).as_bytes());
     data
 }
+

@@ -285,3 +285,4 @@ pub fn find_anim(_html: &str) -> Option<String> {
     // In a real implementation, this would parse CSS or specific elements
     Some("loading-x-anim-0".to_string())
 }
+

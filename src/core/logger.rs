@@ -13,3 +13,4 @@ impl Log {
         println!("SUCCESS: {}", msg);
     }
 }
+

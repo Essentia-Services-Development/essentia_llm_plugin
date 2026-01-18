@@ -149,3 +149,4 @@ pub struct Response {
     pub images:          Option<String>,
     pub extra_data:      HashMap<String, String>,
 }
+

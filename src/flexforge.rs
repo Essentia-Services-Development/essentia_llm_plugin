@@ -417,3 +417,5 @@ mod tests {
         assert!(!plugin.is_streaming());
     }
 }
+
+

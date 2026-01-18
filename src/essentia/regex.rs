@@ -238,3 +238,4 @@ pub fn search(pattern: &str, text: &str) -> Option<String> {
     let regex = Regex::new(pattern).ok()?;
     regex.find(text).map(|(start, end)| text[start..end].to_string())
 }
+

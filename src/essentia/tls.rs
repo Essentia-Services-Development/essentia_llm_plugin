@@ -173,3 +173,4 @@ pub fn validate_certificate(cert: &Certificate, hostname: &str) -> Result<(), &'
 
     Ok(())
 }
+
