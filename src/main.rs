@@ -196,7 +196,7 @@ Current version uses dummy responses for demonstration.
         // Use crypto functions for request signing
         let message_bytes = message.as_bytes();
         let hash = essentia_core_utils::crypto::sha256(message_bytes);
-        // TODO: Implement proper signing with API key
+        // TODO(IMPL): Implement signing with API key
         let signature = hash; // Placeholder - use hash directly for now
 
         // Build JSON payload using our JSON implementation

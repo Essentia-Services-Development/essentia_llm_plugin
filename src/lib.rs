@@ -36,7 +36,7 @@
 //! let panel_info = plugin.panel_info();
 //! ```
 
-// TODO: Add comprehensive documentation to all public items
+// TODO(FEATURE): Add comprehensive documentation to all public items
 // Tracked in documentation remediation queue
 #![allow(missing_docs)]
 // LLM plugin pedantic lint allowances (LLM-LINT-STAGING-01)
