@@ -1,5 +1,5 @@
 [package]
-name = "essentia_llm_plugin"
+name = "essentia-llm-plugin"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -16,7 +16,7 @@ workspace = true
 [lib]
 path = "src/lib.rs"
 [[bin]]
-    name = "essentia_llm_plugin"
+    name = "essentia-llm-plugin"
     path = "src/main.rs"
 [features]
 full-tests = []

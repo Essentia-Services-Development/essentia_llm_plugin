@@ -197,7 +197,8 @@ Current version uses dummy responses for demonstration.
         let message_bytes = message.as_bytes();
         let hash = essentia_core_utils::crypto::sha256(message_bytes);
         // TODO(IMPL): Implement signing with API key
-        let signature = hash; // Placeholder - use hash directly for now
+        let hmac = essentia_core_utils::crypto::Hmac::new(self.api_key.as_bytes());
+        let signature = hmac.compute(message_bytes);
 
         // Build JSON payload using our JSON implementation
         let payload = crate::essentia::json::Value::Object({
@@ -335,4 +336,3 @@ fn main() {
     };
     ui.run();
 }
-
