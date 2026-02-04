@@ -1,0 +1,38 @@
+[package]
+name = "essentia-llm-plugin"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+readme.workspace = true
+publish.workspace = true
+description = "[DEPRECATED: Use essentia_ai_plugin with feature=llm] LLM Integration Plugin"
+keywords = ["llm", "ai", "essentia", "external-api", "deprecated"]
+categories = ["api-bindings", "development-tools"]
+
+
+
+
+[lib]
+path = "src/lib.rs"
+[[bin]]
+    name = "essentia-llm-plugin"
+    path = "src/main.rs"
+[features]
+full-tests = []
+
+[dependencies]
+# Core trait definitions for FlexForge integration
+essentia_traits     = { workspace = true }
+essentia_core_utils     = { workspace = true }
+essentia_time     = { workspace = true }
+essentia_uuid     = { workspace = true }
+# Zero other third-party dependencies - pure Rust standard library only
+# SOVEREIGN STD-ONLY ARCHITECTURE (SSOP)
+
+
+
+
+
+
