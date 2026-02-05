@@ -12,8 +12,8 @@
 //!
 //! ---
 //!
-//! Pure std-only implementation for LLM API integration (External AI, Code Assist).
-//! Zero third-party dependencies - SSOP compliant.
+//! Pure std-only implementation for LLM API integration (External AI, Code
+//! Assist). Zero third-party dependencies - SSOP compliant.
 //!
 //! ## Features
 //! - Base64 encoding/decoding

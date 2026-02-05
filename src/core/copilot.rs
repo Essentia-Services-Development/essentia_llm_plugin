@@ -10,7 +10,12 @@ pub struct ExternalCodeAssistModels;
 #[allow(dead_code)]
 impl ExternalCodeAssistModels {
     pub fn get_available_models() -> Vec<&'static str> {
-        vec!["ext-api-pro", "ext-api-standard", "ext-api-turbo", "ext-api-latest"]
+        vec![
+            "ext-api-pro",
+            "ext-api-standard",
+            "ext-api-turbo",
+            "ext-api-latest",
+        ]
     }
 }
 

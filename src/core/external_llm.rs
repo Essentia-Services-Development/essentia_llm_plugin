@@ -117,9 +117,9 @@ impl ExternalLlm {
                 } else if crate::essentia::regex::search(r"ai|artificial", message).is_some() {
                     "As an Essentia AI assistant, I'm here to help with any questions you have!"
                 } else {
-                    "I'm a pure Rust implementation with zero external dependencies. This \
-                     is a dummy response. Full API access requires HTTPS/TLS implementation in \
-                     std, which is not yet available. The framework is ready for official API \
+                    "I'm a pure Rust implementation with zero external dependencies. This is a \
+                     dummy response. Full API access requires HTTPS/TLS implementation in std, \
+                     which is not yet available. The framework is ready for official API \
                      integration."
                 }
             },
