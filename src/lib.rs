@@ -1,40 +1,5 @@
-//! # Essentia LLM Plugin
-//!
-//! **⚠️ DEPRECATION NOTICE (E-006 Consolidation):**
-//! This crate has been consolidated into `essentia_ai_plugin`.
-//! Use `essentia_ai_plugin` with feature = "llm" instead.
-//!
-//! ```rust,ignore
-//! // Migration:
-//! // OLD: use essentia_llm_plugin::{LlmPluginFlexForge, LlmProvider};
-//! // NEW: use essentia_ai_plugin::llm::{LlmPluginFlexForge, LlmProvider};
-//! ```
-//!
-//! ---
-//!
-//! Pure std-only implementation for LLM API integration (External AI, Code
-//! Assist). Zero third-party dependencies - SSOP compliant.
-//!
-//! ## Features
-//! - Base64 encoding/decoding
-//! - JSON serialization (bespoke)
-//! - HTTP client (minimal)
-//! - TLS handshake (std-only)
-//! - Regex matching (simplified)
-//! - UUID v4 generation
-//! - HTML parsing
-//! - Cookie management
-//!
-//! ## `FlexForge` Integration
-//!
-//! The LLM plugin integrates with `FlexForge` via `LlmPluginFlexForge`:
-//!
-//! ```ignore
-//! use essentia_llm_plugin::flexforge::LlmPluginFlexForge;
-//!
-//! let plugin = LlmPluginFlexForge::new();
-//! let panel_info = plugin.panel_info();
-//! ```
+//! Essentia LLM Plugin library.
+
 
 // TODO(FEATURE): Add comprehensive documentation to all public items
 // Tracked in documentation remediation queue
